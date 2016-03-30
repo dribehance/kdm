@@ -1,0 +1,24 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">意见反馈</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content bg-white">
+        <form name="feedbackForm" ng-submit="submit()" class="feedback-form">
+            <div class="section section-lg">
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control" placeholder="欢迎您提出使用XXX客户端的感受和意见，我们期待你的声音。"></textarea>
+            </div>
+            <div class="section section-lg ">
+                <input type="text" class="form-control" placeholder="姓名，选填">
+            </div>
+            <div class="section section-lg">
+                <input type="text" class="form-control" placeholder="联系方式，选填">
+            </div>
+            <div class="section section-lg">
+                <button type="submit" class="btn btn-lg btn-primary full-width">提交反馈</button>
+            </div>
+        </form>
+    </div>
+</div>

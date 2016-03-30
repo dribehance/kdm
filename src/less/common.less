@@ -1,0 +1,182 @@
+// ----------------------------text color---------------------------- //
+.text-white {
+	color: #FFFFFF;
+}
+.text-black {
+	color: @gray-base;
+}
+.text-gray {
+	color: @gray;
+}
+.text-gray-light {
+	color: @gray-light;
+}
+.text-gray-lighter {
+	color: @gray-lighter;
+}
+.text-primary {
+	color: @brand-primary;
+}
+.text-warning {
+	color: @brand-warning;
+}
+.text-danger {
+	color: @brand-danger;
+}
+.text-success {
+	color:@brand-success;
+}
+.text-facebook {
+	color: #3a579d;
+}
+.text-weibo {
+	color: #d52b2b;
+}
+.text-weixin {
+	color: #00a70b;
+}
+// ----------------------------text size---------------------------- //
+.text-very-large {
+	font-size: 30px;
+}
+.text-very-big {
+	font-size: 24px;
+}
+.text-large {
+	font-size: 16px;
+}
+.text-small {
+	font-size: 14px !important;
+}
+// ----------------------------text align---------------------------- //
+.text-center {
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
+// ----------------------------text ellipsis---------------------------- //
+.text-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.nowrap {
+	white-space: nowrap;
+}
+// ----------------------------bg   color---------------------------- //
+.bg-danger {
+	background-color: @brand-danger;
+}
+.bg-primary {
+	background-color: @brand-primary;
+}
+.bg-gray {
+	background-color: @gray;
+}
+.bg-gray-light {
+	background-color: @gray-light;
+}
+.bg-gray-lighter {
+	background-color: @gray-lighter;
+}
+.bg-transparent {
+	background: none;
+}
+.bg-white {
+	background-color: white;
+}
+// ----------------------------layout   ---------------------------- //
+.clearfixed {
+	&:before,&:after {
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+.block {
+	display: block;
+}
+.full-width {
+	width: 100%;
+}
+.semi-auto {
+	display: block;
+	position: relative;
+	min-height: 20px;
+	&.semi-icon-bar {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	&.semi-left-40 {
+		padding-left: 40px;
+	}
+	&.semi-left-60 {
+		padding-left: 60px;
+	}
+	&.semi-left-80 {
+		padding-left: 80px;
+	}
+	&.semi-right-80 {
+		padding-right: 80px;
+	}
+	.semi-wide-40 {
+		width: 40px;
+	}
+	.semi-wide-60 {
+		width: 60px;
+	}
+	.semi-wide-80 {
+		width: 85px;
+	}
+	.semi-fixed-left {
+		display: block;	
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.semi-fixed-right {
+		display: block;	
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.error {
+		position: absolute;
+		color: @brand-danger;
+		top: -10px;
+		right: 53px;
+	}
+}
+// ----------------------------toast   ---------------------------- //
+.toast {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 51px;
+	bottom: 51px;
+	text-align: center;
+	z-index: 1000;
+	padding-top: 50%;
+	.loader {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		background-repeat: no-repeat;
+		background-image: url("../images/loader.gif");
+		background-size: 100%;
+	}
+}
+// ----------------------------error   ---------------------------- //
+.error-msg {
+	position: absolute;
+	top: 51px;
+	left: 0;
+	right: 0;
+	opacity: 0.8;
+	z-index: 1000;
+}
+.section-lg {
+	padding:16px 10px;
+}

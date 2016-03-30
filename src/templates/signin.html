@@ -1,0 +1,39 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">登录</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content bg-white">
+        <form name="signinForm" class="signin-form section section-lg" ng-submit="signin()">
+            <div class="input-mark mark-left">
+                <i class="kk kk-user mark-left-icon"></i>
+                <input type="text"name="telephone" ng-model="input.telephone" placeholder="请输入登录手机号码">
+            </div>
+            <div class="input-mark mark-left">
+                <i class="kk kk-lock mark-left-icon"></i>
+                <input type="text" name="password" ng-model="input.password" placeholder="请输入登录密码">
+            </div>
+            <button type="submit" class="btn btn-lg full-width" ng-class="{'btn-primary':!signinForm.$invalid,'btn-default':signinForm.$invalid}" ng-disabled="signinForm.$invalid">登录</button>
+        </form>
+        <div class="section section-lg">
+            <div class="pull-left" ng-click="forget()">忘记密码</div>
+            <div class="pull-right" ng-click="signup()">还没有账号？免费注册</div>
+        </div>
+        <div class="btn-group justified">
+            <span class="btn">
+                <i class="kk kk-qq"></i>
+                <span class="block text-center">QQ登录</span>
+            </span>
+            <span class="btn">
+                <i class="kk kk-weixin"></i>
+                <span class="block text-center">微信登录</span>
+            </span>
+            <span class="btn">
+                <i class="kk kk-weibo"></i>
+                <span class="block text-center">微博登录</span>
+            </span>
+        </div>
+    </div>
+</div>

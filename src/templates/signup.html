@@ -1,0 +1,36 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">注册</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content bg-white">
+        <form name="signupForm" class="signin-form section section-lg" ng-submit="signin()">
+            <div ui-show="step ==1" ui-state="step" ui-default="1">
+                <p class="section section-lg text-center text-very-big ">请输入手机号进行注册</p>
+                <div class="input-mark mark-left">
+                    <i class="kk kk-user mark-left-icon"></i>
+                    <input type="tel" name="telephone" ng-model="input.telephone" required placeholder="请输入手机号码">
+                </div>
+                <button type="button" class="btn btn-lg full-width" ui-set="{'step':2}" ng-class="{'btn-primary':!signupForm.telephone.$invalid,'btn-default':signupForm.telephone.$invalid}" ng-disabled="signupForm.telephone.$invalid">下一步</button>
+            </div>
+            <div ui-show="step ==2">
+            	<p class="section section-lg text-center text-very-big ">设置登录密码</p>
+                <div class="input-mark mark-left pull-left" style="width: 66%">
+                	<i class="kk kk-smscode mark-left-icon"></i>
+                    <input type="tel" name="smscode" ng-model="input.smscode" required placeholder="请输入密码">
+                </div>
+                <button type="button" class="btn btn-default btn-lg pull-right col-xs-4">获取验证码</button>
+                <div class="clearfix"></div>
+                <div class="input-mark mark-both">
+                    <i class="kk kk-password mark-left-icon"></i>
+                    <i class="kk kk-on"></i>
+                    <i class="kk kk-off" ui-if="on"></i>
+                    <input type="tel" name="password" ng-model="input.password" required placeholder="请输入密码">
+                </div>
+                <button type="button" class="btn btn-lg full-width" ui-set="{'step':2}" ng-class="{'btn-primary':!signupForm.$invalid,'btn-default':signupForm.$invalid}" ng-disabled="signupForm.$invalid">注册</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+// ----------------------------navbar off   ---------------------------- //
+.has-navbar-top.off-top .app-body {
+    padding-top: 0;
+}
+
+.has-navbar-top.off-top .navbar-absolute-top {
+    display: none;
+}
+
+.has-navbar-bottom.off-bottom .app-body {
+    padding-bottom: 0;
+}
+
+.has-navbar-bottom.off-bottom .navbar-absolute-bottom {
+    display: none;
+}
+
+.navbar-brand {
+    background-color: @brand-primary;
+    color: white;
+}
+.navbar-absolute-top .btn {
+	color: white;
+}
+.navbar-absolute-bottom .btn-navbar {
+	line-height: normal;
+}
+.navbar-absolute-bottom .btn-navbar {
+	color: @gray-light;
+	&.active{
+		color: @brand-primary;
+	}
+}
+.sidebar {
+	background-size: 100%;
+	background-image: url("../images/sidebar_bg.png");
+}

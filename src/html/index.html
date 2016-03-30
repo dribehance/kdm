@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="KDM" ng-class="{'off-top':!navbar.top,'off-bottom':!navbar.bottom}">
+
+<head>
+    <meta charset="utf-8" />
+    <title>KDM</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" href="css/app.min.css" />
+    <!-- <link rel="stylesheet" href="css/responsive.min.css" /> -->
+    <!-- inject:js -->
+    <script src="js/app.min.js"></script>
+</head>
+
+<body ng-class="{'second':CURRENT_PATH=='/second'}">
+    <!-- Sidebars -->
+    <div ng-include="'sidebar.html'" 
+            ui-track-as-search-param='true'
+            class="sidebar sidebar-left" ng-controller="sidebarController"></div>
+    <div class="app">
+        <!-- Navbars -->
+        <div class="navbar navbar-app navbar-absolute-top">
+            <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+                快递么
+            </div>
+            <div class="btn-group pull-left" ui-yield-to="backAction">
+            </div>
+            <div class="btn-group pull-right" ui-yield-to="navbarAction">
+            </div>
+        </div>
+        <div class="navbar navbar-app navbar-absolute-bottom">
+            <div class="btn-group justified">
+                <a href="#/index" class="btn btn-navbar">
+                    <i class="kk kk-30 kk-tab-1"></i>
+                    <span class="block">寄快递</span>
+                </a>
+                <a href="#/second" class="btn btn-navbar">
+                    <i class="kk kk-30 kk-tab-2"></i>
+                    <span class="block">查询</span>
+                </a>
+                <a href="#/third" class="btn btn-navbar">
+                    <i class="kk kk-30 kk-tab-3"></i>
+                    <span class="block">我的快件</span>
+                </a>
+            </div>
+        </div>
+        <!-- App Body -->
+        <div class="app-body">
+            <div class="app-content">
+                <ng-view></ng-view>
+            </div>
+        </div>
+        <!-- error tip -->
+        <div class="error-msg section section-warning text-center" ui-state="error_state" ui-if="error_state">{{ errormsg }}</div>
+        <!-- toast tip -->
+        <div class="toast" ui-state="toast_state" ui-if="toast_state">
+            <span class="loader"></span>
+        </div>
+        <div class="sidebar-cover ng-scope" ng-if="cover.show"></div>
+    </div>
+    <!-- ~ .app -->
+    <div ui-yield-to="modals"></div>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">选择地区</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div class="list-group">
+			<div class="list-group-item" ng-repeat="district in districts" ng-click="choose_district(district)">
+				{{district}}
+			</div>
+		</div>
+	</div>
+</div>
