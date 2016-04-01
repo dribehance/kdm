@@ -19,16 +19,16 @@
                 <label>
                     手机号码
                 </label>
-                <input type="text" placeholder="请输入手机号码" ng-model="input.telephone" required>
+                <input type="tel" placeholder="请输入手机号码" ng-model="input.telephone" required>
             </div>
-            <div class="list-group-item address-item" ng-click="query_province()">
+            <div class="list-group-item address-item" ng-click="query_province()" ng-if="express_type!='国际速运'">
                 <label>
                     所在地区
                 </label>
                 <span>{{input.province_city_district||"请选择省市区"}}</span>
                 <i class="fa fa-chevron-right pull-right text-gray-light"></i>
             </div>
-            <div class="list-group-item address-item">
+            <div class="list-group-item address-item" ng-if="express_type!='国际速运'">
                 <label>
                     详细地址
                 </label>
@@ -36,11 +36,42 @@
             </div>
         </div>
         <p class="section section-lg text-primary">请注意：国际速运只需填写收件人的姓名以及联系方式</p>
-        <div class="list-group">
-            <div class="list-group">
-                <div class="list-group-item clearfix">
-                    <span class="pull-left">历史地址</span>
-                    <span class="pull-right">清空历史</span>
+        <div class="list-group" ng-if="!user.user_id">
+            <a class="list-group-item text-center" ng-href="#/signin">登录查看历史地址</a>
+        </div>
+        <div class="list-group" ng-if="user.user_id">
+            <div class="list-group-item clearfix">
+                <span class="pull-left">历史地址</span>
+                <span class="pull-right" ng-click="clear()" ng-if="histories.length>0">清空历史</span>
+            </div>
+            <div class="list-group-item" ng-repeat="history in histories" ng-if="histories.length>0" ng-click="choose_history(history)">
+                <span class="pull-right" ng-click="remove({type:1,'user_address_id':history.user_address_id},$event)">删除</span>
+                {{history.name+history.telephone}}</br>
+                {{history.province+history.city+history.area+history.address}}
+            </div>
+            <div class="list-group-item text-center" ng-if="histories.length==0">
+                暂无历史地址
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="confirm_panel" ui-state='confirm_panel'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" ui-turn-off="confirm_panel">&times;</button>
+                    <h4 class="modal-title text-center">温馨提示</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>是否清空查件历史？</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="btn-group justified">
+                        <span ui-turn-off="confirm_panel" class="btn btn-default">取消</span>
+                        <span ng-click="remove({type:'2'},$event)" class="btn btn-primary">确定</span>
+                    </div>
                 </div>
             </div>
         </div>

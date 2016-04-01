@@ -6,16 +6,17 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content bg-white">
-        <form name="signinForm" class="signin-form section section-lg" ng-submit="signin()">
+        <form name="signinForm" class="signin-form section section-lg" ng-submit="submit()">
             <div class="input-mark mark-left">
                 <i class="kk kk-user mark-left-icon"></i>
-                <input type="text"name="telephone" ng-model="input.telephone" placeholder="请输入登录手机号码">
+                <input type="tel" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请输入登录手机号码">
             </div>
             <div class="input-mark mark-left">
                 <i class="kk kk-lock mark-left-icon"></i>
-                <input type="text" name="password" ng-model="input.password" placeholder="请输入登录密码">
+                <input type="password" name="password" ng-model="input.password" required placeholder="请输入登录密码">
             </div>
-            <button type="submit" class="btn btn-lg full-width" ng-class="{'btn-primary':!signinForm.$invalid,'btn-default':signinForm.$invalid}" ng-disabled="signinForm.$invalid">登录</button>
+            <button type="submit" class="btn btn-lg full-width btn-primary" ng-disabled="signinForm.$invalid">登录</button>
+            <!-- ng-class="{'btn-primary':!signinForm.$invalid,'btn-default':signinForm.$invalid}" -->
         </form>
         <div class="section section-lg">
             <div class="pull-left" ng-click="forget()">忘记密码</div>

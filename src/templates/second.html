@@ -1,24 +1,54 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <banner data-rate="750/265">
-        	<imageview data-rate="750/265" src="banner" ng-repeat="banner in banners" on-repeat-done></imageview>
+            <imageview data-rate="750/265" src="staticImageUrl + banner.cover" ng-repeat="banner in banners" on-repeat-done></imageview>
         </banner>
-        <div class="section section-lg">
-        	<div class="input-mark">
-        		<input type="text" placeholder="请输入运单号查询运单信息">
-        		<span class="kk kk-scan"></span>
-        	</div>
-        	<span class="btn btn-lg full-width block btn-primary">查询</span>
-        </div>
+        <div class="line"></div>
+        <form name="searchForm" class="section section-lg" ng-submit="submit()">
+            <div class="input-mark">
+                <input type="text" ng-model="input.ex_number" required placeholder="请输入运单号查询运单信息">
+                <span class="kk kk-scan"></span>
+            </div>
+            <button type="submit" ng-disabled="searchForm.$invalid" class="btn btn-lg full-width block btn-primary">查询</button>
+        </form>
         <p></p>
-        <div class="list-group">
-        	<div class="list-group-item clearfix">
-        		<span class="pull-left">查件历史</span>
-        		<span class="pull-right">清空历史</span>
-        	</div>
-        	<div class="list-group-item">
-        		圆通速递7000100684253
-        	</div>
+        <div class="list-group" ng-if="!user.user_id">
+            <a class="list-group-item text-center" ng-href="#/signin">登录查看查件历史</a>
+        </div>
+        <div class="list-group" ng-if="user.user_id">
+            <div class="list-group-item clearfix">
+                <span class="pull-left">查件历史</span>
+                <span class="pull-right" ng-click="clear()" ng-if="result.length>0">清空历史</span>
+            </div>
+            <div class="list-group-item" ng-repeat="rs in result" ng-if="result.length>0">
+                {{rs.company}}{{rs.exp_number}}
+                <span class="pull-right" ng-click="remove({type:'1',search_log_id:rs.search_log_id})">删除</span>
+            </div>
+            <div class="list-group-item text-center" ng-if="result.length==0">
+                暂无查件记录
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="confirm_panel" ui-state='confirm_panel'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" ui-turn-off="confirm_panel">&times;</button>
+                    <h4 class="modal-title text-center">温馨提示</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>是否清空查件历史？</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="btn-group justified">
+                        <span ui-turn-off="confirm_panel" class="btn btn-default">取消</span>
+                        <span ng-click="remove({type:'2'})" class="btn btn-primary">确定</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

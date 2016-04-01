@@ -24,10 +24,10 @@ angular.module("KDM").factory("tokenInterceptor", function($location, $q, localS
                 return response;
             }
             // server response
-            if (response.data.respcode == config.request.TOKEN_INVALID) {
+            if (response.data.code == config.request.TOKEN_INVALID) {
                 console.log("TOKEN_INVALID")
                 localStorageService.remove("token");
-                $location.path("/signIn").replace();
+                $location.path("/signin").replace();
                 return defer.promise;
             } else {
                 return response;
@@ -37,7 +37,7 @@ angular.module("KDM").factory("tokenInterceptor", function($location, $q, localS
         // optional method
         'responseError': function(rejection) {
             var defer = $q.defer();
-            errorServices.requestError(rejection.data,rejection.status,rejection.headers,rejection.config);
+            errorServices.requestError(rejection.data, rejection.status, rejection.headers, rejection.config);
             return defer.promise;
         }
     }

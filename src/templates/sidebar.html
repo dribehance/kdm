@@ -1,10 +1,16 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="sidebar-avatar">
-            <imageview src="'../images/avatar_default.png'" data-rate="1"></imageview>
+            <div flow-init="{singleFile:true}" ng-controller="avatarController" ng-if="user.image_01">
+                <img flow-btn flow-attrs="{accept:'image/*'}" flow-img="$flow.files[0]" ng-src="{{staticImageUrl + user.image_01}}" err-src="../images/avatar_default.png" alt="" class="needsclick block full-width">
+            </div>
+            <imageview src="'../images/avatar_default.png'" data-rate="1" ng-if="!user.image_01"></imageview>
         </div>
-        <p class="text-center sidebar-avatar-p" ng-click="login()">
+        <p class="text-center sidebar-avatar-p" ng-click="login()" ng-if="!user.user_id">
             点击登录
+        </p>
+        <p class="text-center sidebar-avatar-p" ng-if="user.user_id">
+            {{user.telephone}}
         </p>
         <div class="list-group sidebar-list-group" ui-turn-off='uiSidebarLeft'>
             <a class="list-group-item" href="#/third">
@@ -32,7 +38,7 @@
                 <span class="list-group-item-text">系统设置</span>
                 <i class="fa fa-chevron-right pull-right text-gray-light"></i>
             </a>
-            <a class="list-group-item" href="#/">
+            <a class="list-group-item" ng-click="logout()" ng-if="user.user_id">
             	<i class="kk kk-sidebar-6 pull-left"></i>
                 <span class="list-group-item-text">退出登录</span>
                 <i class="fa fa-chevron-right pull-right text-gray-light"></i>

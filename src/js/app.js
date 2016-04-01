@@ -4,7 +4,8 @@ angular.module("KDM", [
         "mobile-angular-ui",
         "mobile-angular-ui.core",
         "LocalStorageModule",
-        "timer"
+        "timer",
+        "flow"
     ])
     .config(function($routeProvider, $httpProvider, localStorageServiceProvider) {
         $routeProvider
@@ -77,6 +78,11 @@ angular.module("KDM", [
                 templateUrl: "_districts.html",
                 reloadOnSearch: false,
                 controller: districtsController
+            })
+            .when("/search_result", {
+                templateUrl: "search_result.html",
+                reloadOnSearch: false,
+                controller: searchResultController
             })
             .otherwise({
                 redirectTo: "/index"

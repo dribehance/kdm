@@ -8,16 +8,16 @@
     <div class="scrollable-content bg-white">
         <form name="feedbackForm" ng-submit="submit()" class="feedback-form">
             <div class="section section-lg">
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control" placeholder="欢迎您提出使用XXX客户端的感受和意见，我们期待你的声音。"></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" ng-model="input.content" required class="form-control" placeholder="欢迎您提出使用快递么的感受和意见，我们期待你的声音。"></textarea>
             </div>
             <div class="section section-lg ">
-                <input type="text" class="form-control" placeholder="姓名，选填">
+                <input type="text" class="form-control" ng-model="input.name" placeholder="姓名，选填">
             </div>
             <div class="section section-lg">
-                <input type="text" class="form-control" placeholder="联系方式，选填">
+                <input type="text" class="form-control" ng-model="input.contact" placeholder="联系方式，选填">
             </div>
             <div class="section section-lg">
-                <button type="submit" class="btn btn-lg btn-primary full-width">提交反馈</button>
+                <button type="submit" class="btn btn-lg btn-primary full-width" ng-disabled="feedbackForm.$invalid">提交反馈</button>
             </div>
         </form>
     </div>

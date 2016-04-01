@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("KDM").factory("appServices", function($rootScope, $window, $location, errorServices, toastServices, platformServices) {
+ angular.module("KDM").factory("appServices", function($rootScope, $window, $location, userServices, localStorageService, errorServices, toastServices, platformServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -56,7 +56,8 @@
                  top: true,
                  bottom: true
              };
-
+             userServices.sync();
+             $rootScope.staticImageUrl = config.imageUrl;
              // {2:rootScope} binding
              $rootScope.$on("$routeChangeStart", routeChangeStart);
              $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);

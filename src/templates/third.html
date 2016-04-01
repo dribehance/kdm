@@ -5,74 +5,68 @@
     <div class="scrollable-header">
         <div class="btn-group justified express-group">
             <span class="btn" ng-class="{'active':express.state=='1'}" ng-click="change_state('1')">
-				待取件
-			</span>
+                待取件
+            </span>
             <span class="btn" ng-class="{'active':express.state=='2'}" ng-click="change_state('2')">
-				运送中
-			</span>
+                运送中
+            </span>
             <span class="btn" ng-class="{'active':express.state=='3'}" ng-click="change_state('3')">
-				已送达
-			</span>
+                已送达
+            </span>
             <span class="btn" ng-class="{'active':express.state=='4'}" ng-click="change_state('4')">
-				已失效
-			</span>
+                已失效
+            </span>
         </div>
     </div>
     <div class="scrollable-content">
         <div class="list-group">
-            <div class="list-group-item clearfix" ng-click="query_detail(1)">
+            <div class="list-group-item clearfix" ng-click="query_record_detail(record)" ng-repeat="record in records">
                 <div class="express-item">
-                    <i class="kk kk-ji-big pull-left"></i>
+                    <i class="kk pull-left" ng-class="{'kk-ji-big ':record.sendOrReceive ==2,'kk-shou-big':record.sendOrReceive==1}"></i>
                     <i class="fa fa-chevron-down pull-right text-gray-light"></i>
                     <div class="item-center">
-                        <b class="title">深圳市</b>
+                        <b class="title">{{record.send_city}}</b>
                         <i class="kk kk-to"></i>
-                        <b class="title">北京死的丰盛的粉色的费市</b>
+                        <b class="title">{{record.collect_city}}</b>
                     </div>
                     <div class="item-center">
-                        <b class="title">徐恩杨</b>
+                        <b class="title">{{record.send_name}}</b>
                         <i class="kk kk-to" style="background:none"></i>
-                        <b class="title">张迪</b>
+                        <b class="title">{{record.collect_name}}</b>
                     </div>
                     <p></p>
-                    <div class="item-center">运单号：0334432228461</div>
+                    <div class="item-center" ng-if="record.send_status!=1">运单号：{{record.ex_number}}</div>
+                    <div class="item-center clearfix" ng-if="record.send_status ==1">
+                        <span class="btn btn-default" ng-click="record_in($event,record.send_id)">录入运单号</span>
+                    </div>
                     <p></p>
                     <div class="item-center">
-                        <b>已经签收，感谢使用顺丰，欢迎再次为您服务</b>
+                        <b>{{get_text(record.send_status)}}</b>
                     </div>
-                    <div class="item-center">2016-01-28 15:18:47</div>
+                    <div class="item-center">
+                        {{record.real_time}}
+                        <span class="pull-right" ng-click="cancel(record.send_id,$event)" ng-if="record.send_status ==1">取消</span>
+                        <span class="pull-right" ng-click="remove(record.send_id,$event)" ng-if="record.send_status ==3">删除</span>
+                    </div>
                 </div>
-                <div class="express-item-detail" ng-if="detail.id == 1">
-                    sdfsdfsdfsafsdfasdfasdf
+                <div class="express-item-detail" ng-if="collapse_id == record.send_id">
+                    <ul id="result" class="result-list">
+                        <li class="" ng-repeat="rs in result track by $index" ng-class="{'first':$first,'last':$last}">
+                            <div class="col1">
+                                <dl>
+                                    <dt>{{get_date(rs.time)}}</dt>
+                                    <dd>{{get_time(rs.time)}}</dd>
+                                </dl>
+                            </div>
+                            <div class="col2"><span class="step"><span class="line1" ng-if="!$first"></span><span class="line2"></span><span class="point"></span></span>
+                            </div>
+                            <div class="col3">{{rs.context}}</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="list-group-item clearfix" ng-click="query_detail(2)">
-                <div class="express-item">
-                    <i class="kk kk-shou-big pull-left"></i>
-                    <i class="fa fa-chevron-down pull-right text-gray-light"></i>
-                    <div class="item-center">
-                        <b class="title">深圳市</b>
-                        <i class="kk kk-to"></i>
-                        <b class="title">北京死的丰盛的粉色的费市</b>
-                    </div>
-                    <div class="item-center">
-                        <b class="title">徐恩杨</b>
-                        <i class="kk kk-to" style="background:none"></i>
-                        <b class="title">张迪</b>
-                    </div>
-                    <p></p>
-                    <div class="item-center clearfix">
-                    	<span class="btn btn-default" ng-click="record($event)">录入运单号</span>
-                    </div>
-                    <p></p>
-                    <div class="item-center">
-                        <b>已经签收，感谢使用顺丰，欢迎再次为您服务</b>
-                    </div>
-                    <div class="item-center">2016-01-28 15:18:47</div>
-                </div>
-                <div class="express-item-detail" ng-if="detail.id == 2">
-                    sdfsdf
-                </div>
+            <div class="section text-center" ng-click="loadMore()">
+                {{page.message}}
             </div>
         </div>
     </div>
@@ -83,14 +77,14 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="list-group text-center">
-                        <div class="list-group-item" ng-click="change_type('all')">
-							<span ng-class="{'active':express.type=='all'}">全部</span>
+                        <div class="list-group-item" ng-click="change_type('1')">
+                            <span ng-class="{'active':express.type=='1'}">全部</span>
                         </div>
-                        <div class="list-group-item" ng-click="change_type('send_out')">
-							<span ng-class="{'active':express.type=='send_out'}">我寄出的</span>
+                        <div class="list-group-item" ng-click="change_type('2')">
+                            <span ng-class="{'active':express.type=='2'}">我寄出的</span>
                         </div>
-                        <div class="list-group-item" ng-click="change_type('to_me')">
-							<span ng-class="{'active':express.type=='to_me'}">寄给我的</span>
+                        <div class="list-group-item" ng-click="change_type('3')">
+                            <span ng-class="{'active':express.type=='3'}">寄给我的</span>
                         </div>
                     </div>
                 </div>

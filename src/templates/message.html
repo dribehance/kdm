@@ -2,21 +2,24 @@
 <div ui-content-for="title">我的消息</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="list-group">
-			<div class="list-group-item clearfix message-item">
-				<img ng-src="../images/message_user.png" class="pull-left" alt="">
-				<i class="fa fa-trash pull-right text-very-big text-gray"></i>
-				<div class="list-group-item-text">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius dicta maxime, commodi. Suscipit quae, provident perferendis 
-				</div>
-				<div>
-					2015-03-04
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="scrollable-content">
+        <div class="list-group">
+            <div class="list-group-item clearfix message-item" ng-repeat="message in messages">
+                <img ng-src="../images/message_user.png" class="pull-left" alt="">
+                <div class="list-group-item-text">
+                    {{message.content}}
+                </div>
+                <div>
+                    {{message.post_time}}
+                    <span class="pull-right" ng-click="remove(message.push_message_id)">删除</span>
+                </div>
+            </div>
+            <div class="section text-center" ng-if="messages.length ==0">
+                暂无消息
+            </div>
+        </div>
+    </div>
 </div>
