@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("KDM").factory("appServices", function($rootScope, $window, $location, userServices, localStorageService, errorServices, toastServices, platformServices, config) {
+ angular.module("KDM").factory("appServices", function($rootScope, $window, $location, geoServices, userServices, localStorageService, errorServices, toastServices, platformServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -56,6 +56,15 @@
                  top: true,
                  bottom: true
              };
+             $rootScope.geoposition = {
+                 coords: {
+                     latitude: "22.567061",
+                     longitude: "113.867011"
+                 }
+             }
+             geoServices.position().then(function(data) {
+                 $rootScope.geoposition = data;
+             })
              userServices.sync();
              $rootScope.staticImageUrl = config.imageUrl;
              // {2:rootScope} binding
