@@ -46,7 +46,7 @@
                     <div class="item-center">
                         {{record.real_time}}
                         <span class="pull-right" ng-click="cancel(record.send_id,$event)" ng-if="record.send_status ==1">取消</span>
-                        <span class="pull-right" ng-click="remove(record.send_id,$event)" ng-if="record.send_status ==3">删除</span>
+                        <span class="pull-right" ng-click="remove(record.send_id,$event)" ng-if="record.send_status ==3 || record.send_status ==4">删除</span>
                     </div>
                 </div>
                 <div class="express-item-detail" ng-if="collapse_id == record.send_id">

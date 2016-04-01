@@ -66,7 +66,9 @@ angular.module("KDM").factory("userServices", function($http, $rootScope, localS
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/UserCenter/baseInfo",
 				method: "GET",
-				params: angular.extend({}, config.common_params, input)
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
 			}).then(function(data) {
 				return data.data;
 			});

@@ -22,7 +22,19 @@ angular.module("KDM", [
             .when("/third", {
                 templateUrl: "third.html",
                 reloadOnSearch: false,
-                controller: thirdController
+                controller: thirdController,
+                resolve: {
+                    user: function($q, $location, localStorageService) {
+                        var defer = $q.defer();
+                        if (localStorageService.get("token")) {
+                            defer.resolve();
+                        } else {
+                            defer.reject();
+                            $location.path("/signin").replace();
+                        }
+                        return defer.promise;
+                    }
+                }
             })
             .when("/signin", {
                 templateUrl: "signin.html",
