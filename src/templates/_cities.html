@@ -7,8 +7,8 @@
 <div class="scrollable">
 	<div class="scrollable-content">
 		<div class="list-group">
-			<div class="list-group-item" ng-repeat="city in cities" ng-click="query_distircts(city)">
-				{{city}}
+			<div class="list-group-item" ng-repeat="city in cities" ng-click="query_distircts(city.name)">
+				{{city.name}}
 			</div>
 		</div>
 	</div>

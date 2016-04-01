@@ -27,6 +27,16 @@ angular.module("KDM").factory("locationServices", function($http, $rootScope, lo
 			}).then(function(data) {
 				return data.data;
 			});
+		},
+		query_all: function() {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: "city/province_city_district.json",
+				cache: true,
+				method: "GET",
+			}).then(function(data) {
+				return data.data;
+			});
 		}
 	}
 });
