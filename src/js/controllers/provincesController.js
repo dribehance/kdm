@@ -3,7 +3,9 @@ var provincesController = function($scope, $location, locationServices, errorSer
 	$scope.query_cities = function(province) {
 		$location.path("/cities").search("province", province).replace();
 	}
+	toastServices.show();
 	locationServices.query_all().then(function(data) {
+		toastServices.hide();
 		var provinces = [];
 		angular.forEach(data.province, function(value, index) {
 			provinces.push(value.name);
